@@ -1,4 +1,5 @@
 # Fiddler
+<<<<<<< HEAD
 
 To start your Phoenix app:
 
@@ -18,3 +19,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Docs: https://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+=======
+Elixir Server for Mifi Application
+Using GraphQL for endpoint connections
+>>>>>>> 2ffe9a20879aae9fb14d2f1c22009fd4b779a87e
