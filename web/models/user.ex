@@ -21,6 +21,7 @@ defmodule Fiddler.User do
     struct
     |> cast(params, [:name, :email], [:password])
     |> validate_required([:name, :email])
+    |> unique_constraint(:email, message: "This user currently exists. Please try a different email.")
     |> put_pass_hash
   end
 
@@ -33,6 +34,7 @@ defmodule Fiddler.User do
     struct
     |> cast(params, [:name, :email, :password])
     |> validate_required([:name, :email, :password])
+    |> unique_constraint(:email, message: "This user currently exists. Please try a different email.")
     |> put_pass_hash
   end
 
@@ -43,6 +45,5 @@ defmodule Fiddler.User do
       _ ->
         changeset
     end
-
   end
 end

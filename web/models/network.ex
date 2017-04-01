@@ -32,8 +32,8 @@ defmodule Fiddler.Network do
   """
   def registration_changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :discoverable, :latitude, :longitude, :bssid, :password, :user_id])
-    |> validate_required([:name, :discoverable, :latitude, :longitude, :bssid, :password, :user_id])
+    |> cast(params, [:name, :discoverable, :latitude, :longitude, :bssid, :password])
+    |> validate_required([:name, :discoverable, :latitude, :longitude, :bssid, :password])
     |> put_hash_pass
   end
 
@@ -44,5 +44,39 @@ defmodule Fiddler.Network do
       _ ->
         changeset
     end
+  end
+
+  def with_user(query \\ __MODULE__) do
+    query
+    |> preload(:users)
+  end
+
+  def by_id(id, query) do
+    query
+    |> where(id: ^id)
+  end
+
+  #ADD CITY
+  def by_city(query, args)
+  def by_city(query, %{city: city}) do
+    query
+    |> where(city: ^city)
+  end
+  def by_city(_query, _args), do: {:error, "Invalid Location"}
+
+  def by_location(networks, args)
+  def by_location(query, %{latitude: lat, longitude: lng}, networks) when is_list(networks) do
+    my_loc = [lat, lng]
+    Enum.flat_map(networks, fn network ->
+      [
+        network
+        |> Map.put(:distance, get_distance(my_loc, network))
+      ]
+    end)
+  end
+  def by_location(_query, _args), do: {:error, "Invalid Location"}
+
+  def get_distance(my_loc, %{latitude: lat, longitude: lng}) do
+    Geocalc.distance_between(my_loc, [lat, lng])
   end
 end

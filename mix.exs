@@ -18,7 +18,7 @@ defmodule Fiddler.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Fiddler, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
+     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :geocalc,
                     :phoenix_ecto, :postgrex, :absinthe, :absinthe_plug, :absinthe_ecto, :poison, :faker, :comeonin, :guardian]]
   end
 
@@ -43,7 +43,8 @@ defmodule Fiddler.Mixfile do
      {:poison, "~> 3.0", override: true},
      {:faker, "~> 0.7"},
      {:comeonin, "~> 2.5"},
-     {:guardian, "~> 0.13.0"}]
+     {:guardian, "~> 0.13.0"},
+     {:geocalc, "~> 0.5"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

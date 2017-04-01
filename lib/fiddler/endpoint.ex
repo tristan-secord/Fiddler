@@ -40,9 +40,11 @@ defmodule Fiddler.Endpoint do
 
   plug Fiddler.Router
 
-  plug Guardian.Plug.VerifyHeader, realm: "Bearer"
-  plug Guardian.Plug.LoadResource
-  plug Fiddler.Web.Context
-  plug Absinthe.Plug,
-    schema: Fiddler.Schema
+  # With an API using entirely GraphQL -> can get rid of phoenix router and include all plugs
+  # in the endpoint... But will lose GraphiQL test arena
+  # plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+  # plug Guardian.Plug.LoadResource
+  # plug Fiddler.Web.Context
+  # plug Absinthe.Plug,
+  #  schema: Fiddler.Schema
 end
