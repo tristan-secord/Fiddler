@@ -22,11 +22,11 @@ defmodule Fiddler.UserResolver do
     end
   end
 
+  defp get_first_error(nil), do: "Something went wrong. Please try again."
   defp get_first_error(changeset) do
     case changeset.errors do
       [{_field, {msg, _opts}} | _rest] -> msg
       nil -> "Something went wrong. Please try again."
     end
   end
-  defp get_first_error(_changeset), do: "Something went wrong. Please try again."
 end

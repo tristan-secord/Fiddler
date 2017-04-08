@@ -13,9 +13,11 @@ defmodule Fiddler.Schema.Types do
   object :network do
     field :name, :string
     field :discoverable, :boolean
-    field :latitude, :float
-    field :longitude, :float
-    field :bssid, :string
+  end
+
+  object :network_query do
+    field :name, :string
+    field :distance, :float
   end
 
   object :session do
